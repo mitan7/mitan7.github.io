@@ -3,44 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>You Were Hacked</title>
+  <title>Firewall Suite</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* Full screen black background */
     body {
+      font-family: 'Inter', sans-serif;
       margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #000;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #9b59b6; /* Nice purple */
+      background-color: #f8f9fa;
+      color: #222;
+    }
+
+    header {
+      background-color: #1f2937;
+      color: white;
+      padding: 60px 20px;
       text-align: center;
     }
 
-    h1 {
-      font-size: 4rem;
-      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
-      animation: fadeIn 2s ease-in-out forwards;
-      opacity: 0;
+    header h1 {
+      font-size: 3em;
+      margin: 0;
     }
 
-    /* Simple fade-in animation */
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    p {
-      font-size: 1.5rem;
-      margin-top: 1rem;
-      color: #b288f8; /* lighter purple for subtext */
+    main {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 30px;
+    }
+
+    .feature {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .feature h3 {
+      margin-top: 0;
+      color: #1f2937;
+    }
+
+    .download-button {
+      margin-top: 40px;
+      padding: 18px 40px;
+      font-size: 18px;
+      background-color: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .download-button:hover {
+      background-color: #1e40af;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      background-color: #f1f1f1;
+    }
+
   </style>
 </head>
 <body>
-  <div>
-    <h1>By MITAN</h1>
-    <p>You were just hacked. Like... big time. I have alot on this current device! Like a RAT, Keylogger, heavy persistence, and even admin! Can you beleive it? I bet you can't. But anyway, the reason I am informing you is simply: I got bored. Literally. bordem. I already stole everything, do not worry! But yeah, have fun.</p>
-  </div>
+  <header>
+    <h1>Firewall Suite</h1>
+    <p>A clean, powerful GUI tool that combines Python and PowerShell to manage your firewall effortlessly.</p>
+  </header>
+
+  <main>
+    <div class="features">
+      <div class="feature">
+        <h3>Easy to Use</h3>
+        <p>Double-click and go — no complicated setup needed.</p>
+      </div>
+      <div class="feature">
+        <h3>Powerful</h3>
+        <p>Full-featured firewall controls, all from a simple GUI.</p>
+      </div>
+      <div class="feature">
+        <h3>Safe & Reliable</h3>
+        <p>Python + PowerShell integration ensures your rules work smoothly.</p>
+      </div>
+    </div>
+
+    <a class="download-button" href="FirewallSuite.zip" download>Download Firewall Suite</a>
+  </main>
+
+  <footer>
+    &copy; 2025 Firewall Suite
+  </footer>
 </body>
 </html>
