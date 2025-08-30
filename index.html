@@ -13,28 +13,36 @@
       color: #222;
     }
 
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {opacity: 0; transform: translateY(20px);}
+      100% {opacity: 1; transform: translateY(0);}
+    }
+
     header {
-      background-color: #1f2937;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
       color: white;
-      padding: 60px 20px;
+      padding: 80px 20px 60px 20px;
       text-align: center;
     }
 
     header h1 {
       font-size: 3em;
       margin: 0;
+      animation: fadeInUp 1s ease forwards;
     }
 
     header p {
       font-size: 1.2em;
-      margin-top: 10px;
+      margin-top: 15px;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      animation: fadeInUp 1.2s ease forwards;
     }
 
     main {
-      padding: 40px 20px;
+      padding: 50px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -51,22 +59,29 @@
     .feature {
       background-color: white;
       border-radius: 12px;
-      padding: 20px;
+      padding: 25px;
       width: 250px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       text-align: center;
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    .feature h3 {
-      margin-top: 0;
-      color: #1f2937;
+    .feature:nth-child(1) { animation-delay: 0.2s; }
+    .feature:nth-child(2) { animation-delay: 0.4s; }
+    .feature:nth-child(3) { animation-delay: 0.6s; }
+
+    .feature:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
     }
 
     .download-button {
-      margin-top: 40px;
+      margin-top: 50px;
       padding: 18px 40px;
       font-size: 18px;
-      background-color: #2563eb;
+      background-color: #10b981;
       color: white;
       text-decoration: none;
       border-radius: 10px;
@@ -74,18 +89,50 @@
     }
 
     .download-button:hover {
-      background-color: #1e40af;
+      background-color: #059669;
+    }
+
+    /* Other Projects Section */
+    .other-projects {
+      margin-top: 80px;
+      text-align: center;
+    }
+
+    .other-projects h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .other-projects ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .other-projects li {
+      margin: 10px 0;
+      font-size: 1.1em;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .other-projects a {
+      color: #2563eb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .other-projects a:hover {
+      color: #1e40af;
     }
 
     footer {
-      margin-top: 60px;
+      margin-top: 80px;
       padding: 20px;
       text-align: center;
       font-size: 14px;
       color: #777;
       background-color: #f1f1f1;
     }
-
   </style>
 </head>
 <body>
@@ -111,6 +158,15 @@
     </div>
 
     <a class="download-button" href="FirewallSuite.zip" download>Download Firewall Suite</a>
+
+    <section class="other-projects">
+      <h2>Check Out My Other Projects</h2>
+      <ul>
+        <li><a href="https://example1.github.io" target="_blank">Project One</a></li>
+        <li><a href="https://example2.github.io" target="_blank">Project Two</a></li>
+        <li><a href="https://example3.github.io" target="_blank">Project Three</a></li>
+      </ul>
+    </section>
   </main>
 
   <footer>
