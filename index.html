@@ -3,14 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firewall Suite</title>
+  <title>Firewall Suite (Beta Version)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #2563eb;
+      --secondary: #10b981;
+      --bg-light: #f8f9fa;
+      --bg-dark: #121212;
+      --text-light: #222;
+      --text-dark: #f0f0f0;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       margin: 0;
-      background-color: #f8f9fa;
-      color: #222;
+      background-color: var(--bg-light);
+      color: var(--text-light);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
     }
 
     /* Animations */
@@ -20,10 +35,11 @@
     }
 
     header {
-      background: linear-gradient(135deg, #2563eb, #1e40af);
+      background: linear-gradient(135deg, var(--primary), #1e40af);
       color: white;
       padding: 80px 20px 60px 20px;
       text-align: center;
+      position: relative;
     }
 
     header h1 {
@@ -39,6 +55,37 @@
       margin-left: auto;
       margin-right: auto;
       animation: fadeInUp 1.2s ease forwards;
+    }
+
+    header .beta-tag {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #f59e0b;
+      color: white;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9em;
+      animation: fadeInUp 1.5s ease forwards;
+    }
+
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: white;
+      color: #333;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .dark-toggle:hover {
+      background-color: #eee;
     }
 
     main {
@@ -65,7 +112,12 @@
       text-align: center;
       opacity: 0;
       animation: fadeInUp 1s ease forwards;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+    }
+
+    body.dark .feature {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
     }
 
     .feature:nth-child(1) { animation-delay: 0.2s; }
@@ -81,7 +133,7 @@
       margin-top: 50px;
       padding: 18px 40px;
       font-size: 18px;
-      background-color: #10b981;
+      background-color: var(--secondary);
       color: white;
       text-decoration: none;
       border-radius: 10px;
@@ -92,7 +144,6 @@
       background-color: #059669;
     }
 
-    /* Other Projects Section */
     .other-projects {
       margin-top: 80px;
       text-align: center;
@@ -116,7 +167,7 @@
     }
 
     .other-projects a {
-      color: #2563eb;
+      color: var(--primary);
       text-decoration: none;
       transition: color 0.3s;
     }
@@ -132,11 +183,19 @@
       font-size: 14px;
       color: #777;
       background-color: #f1f1f1;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark footer {
+      background-color: #1e1e1e;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
   <header>
+    <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <div class="beta-tag">Beta Version</div>
     <h1>Firewall Suite</h1>
     <p>A clean, powerful GUI tool that combines Python and PowerShell to manage your Windows 11 firewall effortlessly.</p>
   </header>
@@ -164,7 +223,7 @@
       <ul>
         <li><a href="https://github.com/mitan7/Windows-11-Keylogger" target="_blank">Educating C++ Keylogger</a></li>
         <li><a href="https://github.com/mitan7/Malware-Vulnerability-Testing" target="_blank">Python Vulnerability Scanning and Prevention</a></li>
-        <li><a href="https://github.com/mitan7/Vuln-Testing.git" target="_blank">Find Vulneravilites About a Device and Save It In a Discord VIA Webhook</a></li>
+        <li><a href="https://github.com/mitan7/Vuln-Testing.git" target="_blank">Find Vulnerabilities About a Device and Save It In a Discord VIA Webhook</a></li>
       </ul>
     </section>
   </main>
@@ -172,5 +231,11 @@
   <footer>
     &copy; 2025 Firewall Suite
   </footer>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark');
+    }
+  </script>
 </body>
 </html>
