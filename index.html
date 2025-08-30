@@ -1,279 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firewall Suite (Beta Version)</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="main.png" type="image/png"> <!-- Favicon -->
-  <style>
-    :root {
-      --primary: #2563eb;
-      --secondary: #10b981;
-      --bg-light: #f8f9fa;
-      --bg-dark: #121212;
-      --text-light: #222;
-      --text-dark: #f0f0f0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Firewall Suite (Beta Version)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="icon" href="main.png" type="image/png">
+<style>
+  :root {
+    --primary: #2563eb;
+    --secondary: #10b981;
+    --bg-light: #f8f9fa;
+    --bg-dark: #121212;
+    --text-light: #222;
+    --text-dark: #f0f0f0;
+  }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background-color: var(--bg-light);
-      color: var(--text-light);
-      transition: background-color 0.3s, color 0.3s;
-    }
+  body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    transition: background-color 0.3s, color 0.3s;
+    overflow-x: hidden;
+  }
 
-    body.dark {
-      background-color: var(--bg-dark);
-      color: var(--text-dark);
-    }
+  body.dark {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+  }
 
-    /* Glitch effect */
-    .glitch {
-      animation: glitchIntro 1s forwards;
-    }
+  /* Full screen glitch overlay */
+  #glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary);
+    color: white;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    animation: glitchFullScreen 1s forwards;
+  }
 
-    @keyframes glitchIntro {
-      0% {background-color: var(--primary); color: white;}
-      25% {background-color: black; color: red;}
-      50% {background-color: red; color: black;}
-      75% {background-color: black; color: red;}
-      100% {background-color: var(--primary); color: white;}
-    }
+  @keyframes glitchFullScreen {
+    0% {background-color: var(--primary); color: white;}
+    25% {background-color: black; color: red;}
+    50% {background-color: red; color: black;}
+    75% {background-color: black; color: red;}
+    100% {opacity: 0; visibility: hidden;}
+  }
 
-    @keyframes fadeInUp {
-      0% {opacity: 0; transform: translateY(20px);}
-      100% {opacity: 1; transform: translateY(0);}
-    }
+  @keyframes fadeInUp {
+    0% {opacity: 0; transform: translateY(20px);}
+    100% {opacity: 1; transform: translateY(0);}
+  }
 
-    header {
-      padding: 80px 20px 60px 20px;
-      text-align: center;
-      position: relative;
-      background: var(--primary);
-      color: white;
-    }
+  header {
+    padding: 80px 20px 60px 20px;
+    text-align: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--primary), #1e40af);
+    color: white;
+  }
 
-    header h1 {
-      font-size: 3em;
-      margin: 0;
-      animation: fadeInUp 1s ease forwards;
-    }
+  header h1 {
+    font-size: 3em;
+    margin: 0;
+    animation: fadeInUp 1s ease forwards;
+  }
 
-    header p {
-      font-size: 1.2em;
-      margin-top: 15px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      animation: fadeInUp 1.2s ease forwards;
-    }
+  header p {
+    font-size: 1.2em;
+    margin-top: 15px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 1.2s ease forwards;
+  }
 
-    header .beta-tag {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background-color: #f59e0b;
-      color: white;
-      padding: 5px 12px;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.9em;
-      animation: fadeInUp 1.5s ease forwards;
-    }
+  header .beta-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #f59e0b;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9em;
+    animation: fadeInUp 1.5s ease forwards;
+  }
 
-    .dark-toggle {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      background-color: white;
-      color: #333;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: background-color 0.3s, color 0.3s;
-    }
+  .dark-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.3s, color 0.3s;
+  }
 
-    .dark-toggle:hover {
-      background-color: #eee;
-    }
+  .dark-toggle:hover { background-color: #eee; }
 
-    .header-title {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 15px;
-    }
+  .header-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
+  .logo { width: 60px; height: auto; }
 
-    .logo {
-      width: 60px;
-      height: auto;
-    }
+  main { padding: 50px 20px; display: flex; flex-direction: column; align-items: center; }
 
-    main {
-      padding: 50px 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+  .features { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 40px; gap: 30px; }
 
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
-      gap: 30px;
-    }
+  .feature {
+    background-color: white;
+    border-radius: 12px;
+    padding: 25px;
+    width: 250px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+  }
 
-    .feature {
-      background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      width: 250px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
-    }
+  body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
 
-    body.dark .feature {
-      background-color: #1e1e1e;
-      color: #f0f0f0;
-    }
+  .feature:nth-child(1) { animation-delay: 0.2s; }
+  .feature:nth-child(2) { animation-delay: 0.4s; }
+  .feature:nth-child(3) { animation-delay: 0.6s; }
 
-    .feature:nth-child(1) { animation-delay: 0.2s; }
-    .feature:nth-child(2) { animation-delay: 0.4s; }
-    .feature:nth-child(3) { animation-delay: 0.6s; }
+  .feature:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
-    .feature:hover {
-      transform: scale(1.05);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
+  .download-button {
+    margin-top: 50px;
+    padding: 18px 40px;
+    font-size: 18px;
+    background-color: var(--secondary);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
 
-    .download-button {
-      margin-top: 50px;
-      padding: 18px 40px;
-      font-size: 18px;
-      background-color: var(--secondary);
-      color: white;
-      text-decoration: none;
-      border-radius: 10px;
-      transition: background-color 0.3s;
-    }
+  .download-button:hover { background-color: #059669; }
 
-    .download-button:hover {
-      background-color: #059669;
-    }
+  .other-projects { margin-top: 80px; text-align: center; }
 
-    .other-projects {
-      margin-top: 80px;
-      text-align: center;
-    }
+  .other-projects h2 { font-size: 2em; margin-bottom: 20px; animation: fadeInUp 1s ease forwards; }
 
-    .other-projects h2 {
-      font-size: 2em;
-      margin-bottom: 20px;
-      animation: fadeInUp 1s ease forwards;
-    }
+  .other-projects ul { list-style: none; padding: 0; }
 
-    .other-projects ul {
-      list-style: none;
-      padding: 0;
-    }
+  .other-projects li { margin: 10px 0; font-size: 1.1em; animation: fadeInUp 1s ease forwards; }
 
-    .other-projects li {
-      margin: 10px 0;
-      font-size: 1.1em;
-      animation: fadeInUp 1s ease forwards;
-    }
+  .other-projects a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
+  .other-projects a:hover { color: #1e40af; }
 
-    .other-projects a {
-      color: var(--primary);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
+  footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; transition: background-color 0.3s, color 0.3s; }
+  body.dark footer { background-color: #1e1e1e; color: #aaa; }
 
-    .other-projects a:hover {
-      color: #1e40af;
-    }
-
-    footer {
-      margin-top: 80px;
-      padding: 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-      background-color: #f1f1f1;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    body.dark footer {
-      background-color: #1e1e1e;
-      color: #aaa;
-    }
-  </style>
+</style>
 </head>
 <body>
-  <header id="header">
-    <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-    <div class="beta-tag">Beta Version</div>
-    <div class="header-title">
-      <img src="main.png" alt="Firewall Suite Logo" class="logo">
-      <h1>Firewall Suite</h1>
-    </div>
-    <p>A clean, powerful GUI tool that combines Python and PowerShell to manage your Windows 11 firewall effortlessly.</p>
-  </header>
 
-  <main>
-    <div class="features">
-      <div class="feature">
-        <h3>Easy to Use</h3>
-        <p>Double-click and go — no complicated setup needed.</p>
-      </div>
-      <div class="feature">
-        <h3>Powerful</h3>
-        <p>Full-featured firewall controls, all from a simple GUI.</p>
-      </div>
-      <div class="feature">
-        <h3>Safe & Reliable</h3>
-        <p>Python + PowerShell integration ensures your rules work smoothly.</p>
-      </div>
-    </div>
+<div id="glitch-overlay">Firewall Suite</div> <!-- Full screen glitch overlay -->
 
-    <a class="download-button" href="FirewallSuite.zip" download>Download Firewall Suite Now</a>
+<header>
+  <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+  <div class="beta-tag">Beta Version</div>
+  <div class="header-title">
+    <img src="main.png" alt="Firewall Suite Logo" class="logo">
+    <h1>Firewall Suite</h1>
+  </div>
+  <p>A clean, powerful GUI tool that combines Python and PowerShell to manage your Windows 11 firewall effortlessly.</p>
+</header>
 
-    <section class="other-projects">
-      <h2>Check Out My Other Projects</h2>
-      <ul>
-        <li><a href="https://github.com/mitan7/Windows-11-Keylogger" target="_blank">Educating C++ Keylogger</a></li>
-        <li><a href="https://github.com/mitan7/Malware-Vulnerability-Testing" target="_blank">Python Vulnerability Scanning and Prevention</a></li>
-        <li><a href="https://github.com/mitan7/Vuln-Testing.git" target="_blank">Find Vulnerabilities About a Device and Save It In a Discord VIA Webhook</a></li>
-      </ul>
-    </section>
-  </main>
+<main>
+  <div class="features">
+    <div class="feature"><h3>Easy to Use</h3><p>Double-click and go — no complicated setup needed.</p></div>
+    <div class="feature"><h3>Powerful</h3><p>Full-featured firewall controls, all from a simple GUI.</p></div>
+    <div class="feature"><h3>Safe & Reliable</h3><p>Python + PowerShell integration ensures your rules work smoothly.</p></div>
+  </div>
 
-  <footer>
-    &copy; 2025 Firewall Suite
-  </footer>
+  <a class="download-button" href="FirewallSuite.zip" download>Download Firewall Suite Now</a>
 
-  <script>
-    // Dark mode toggle
-    function toggleDarkMode() {
-      document.body.classList.toggle('dark');
-    }
+  <section class="other-projects">
+    <h2>Check Out My Other Projects</h2>
+    <ul>
+      <li><a href="https://github.com/mitan7/Windows-11-Keylogger" target="_blank">Educating C++ Keylogger</a></li>
+      <li><a href="https://github.com/mitan7/Malware-Vulnerability-Testing" target="_blank">Python Vulnerability Scanning and Prevention</a></li>
+      <li><a href="https://github.com/mitan7/Vuln-Testing.git" target="_blank">Find Vulnerabilities About a Device and Save It In a Discord VIA Webhook</a></li>
+    </ul>
+  </section>
+</main>
 
-    // Glitch intro effect on page load
-    window.addEventListener('load', () => {
-      const header = document.getElementById('header');
-      header.classList.add('glitch');
-      setTimeout(() => {
-        header.classList.remove('glitch');
-      }, 1000); // Duration matches glitchIntro animation
-    });
-  </script>
+<footer>&copy; 2025 Firewall Suite</footer>
+
+<script>
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+}
+
+// Remove glitch overlay after animation
+window.addEventListener('load', () => {
+  const overlay = document.getElementById('glitch-overlay');
+  setTimeout(() => { overlay.style.display = 'none'; }, 1000); // matches animation duration
+});
+</script>
+
 </body>
 </html>
