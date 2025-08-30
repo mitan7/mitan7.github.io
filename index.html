@@ -1,86 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Firewall Suite (Beta Version)</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="icon" href="main.png" type="image/png">
-<style>
-:root {
-  --primary: #2563eb;
-  --secondary: #10b981;
-  --bg-light: #f8f9fa;
-  --bg-dark: #121212;
-  --text-light: #222;
-  --text-dark: #f0f0f0;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  margin: 0;
-  background-color: var(--bg-light);
-  color: var(--text-light);
-  transition: background-color 0.3s, color 0.3s;
-}
-
-body.dark { background-color: var(--bg-dark); color: var(--text-dark); }
-
-header {
-  padding: 80px 20px 60px 20px;
-  text-align: center;
-  position: relative;
-  background: linear-gradient(135deg, var(--primary), #1e40af);
-  color: white;
-  transition: all 0.3s;
-}
-
-header h1, header p {
-  transition: all 0.3s;
-}
-
-.header-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
-.logo { width: 60px; height: auto; }
-
-main { padding: 50px 20px; display: flex; flex-direction: column; align-items: center; }
-
-.features { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 40px; gap: 30px; }
-.feature { background-color: white; border-radius: 12px; padding: 25px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: all 0.3s; }
-body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
-
-.download-button { margin-top: 50px; padding: 18px 40px; font-size: 18px; background-color: var(--secondary); color: white; text-decoration: none; border-radius: 10px; transition: background-color 0.3s; }
-.download-button:hover { background-color: #059669; }
-
-.other-projects { margin-top: 80px; text-align: center; }
-.other-projects h2 { font-size: 2em; margin-bottom: 20px; }
-.other-projects ul { list-style: none; padding: 0; }
-.other-projects li { margin: 10px 0; font-size: 1.1em; }
-.other-projects a { color: var(--primary); text-decoration: none; }
-.other-projects a:hover { color: #1e40af; }
-
-footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; transition: all 0.3s; }
-
-.dark-toggle { position: absolute; top: 20px; left: 20px; background-color: white; color: #333; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
-.dark-toggle:hover { background-color: #eee; }
-
-/* Glitch animation for header and background */
-@keyframes glitchAnim {
-  0% {background: linear-gradient(135deg, var(--primary), #1e40af); color: white;}
-  25% {background-color: black; color: red;}
-  50% {background-color: red; color: black;}
-  75% {background-color: black; color: red;}
-  100% {background: linear-gradient(135deg, var(--primary), #1e40af); color: white;}
-}
-.glitch {
-  animation: glitchAnim 1s forwards;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firewall Suite (Beta Version)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="main.png" type="image/png">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f8f9fa;
+      color: #222;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    body.dark {
+      background-color: #121212;
+      color: #f0f0f0;
+    }
+    header {
+      padding: 80px 20px 60px;
+      text-align: center;
+      position: relative;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      transition: all 0.3s;
+    }
+    header h1, header p {
+      transition: all 0.3s;
+    }
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .logo {
+      width: 60px;
+      height: auto;
+    }
+    main {
+      padding: 50px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 40px;
+      gap: 30px;
+    }
+    .feature {
+      background-color: white;
+      border-radius: 12px;
+      padding: 25px;
+      width: 250px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s;
+    }
+    body.dark .feature {
+      background-color: #1e1e1e;
+      color: #f0f0f0;
+    }
+    .download-button {
+      margin-top: 50px;
+      padding: 18px 40px;
+      font-size: 18px;
+      background-color: #10b981;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background-color 0.3s;
+    }
+    .download-button:hover {
+      background-color: #059669;
+    }
+    .other-projects {
+      margin-top: 80px;
+      text-align: center;
+    }
+    .other-projects h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .other-projects ul {
+      list-style: none;
+      padding: 0;
+    }
+    .other-projects li {
+      margin: 10px 0;
+      font-size: 1.1em;
+    }
+    .other-projects a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    .other-projects a:hover {
+      color: #1e40af;
+    }
+    footer {
+      margin-top: 80px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #777;
+      background-color: #f1f1f1;
+      transition: all 0.3s;
+    }
+    .dark-toggle {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: white;
+      color: #333;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .dark-toggle:hover {
+      background-color: #eee;
+    }
+    /* Glitch animation for header and background */
+    @keyframes glitchAnim {
+      0% {background: linear-gradient(135deg, #2563eb, #1e40af); color: white;}
+      25% {background-color: black; color: red;}
+      50% {background-color: red; color: black;}
+      75% {background-color: black; color: red;}
+      100% {background: linear-gradient(135deg, #2563eb, #1e40af); color: white;}
+    }
+    .glitch {
+      animation: glitchAnim 1s forwards;
+    }
+    /* "See Glitch Again" button */
+    #glitch-button {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: #333;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1000;
+      transition: background-color 0.3s;
+    }
+    #glitch-button:hover {
+      background-color: #555;
+    }
+  </style>
 </head>
 <body>
 
 <header id="header">
   <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  <div class="beta-tag">Beta Version</div>
   <div class="header-title">
     <img src="main.png" alt="Firewall Suite Logo" class="logo">
     <h1>Firewall Suite</h1>
@@ -90,12 +170,22 @@ footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; c
 
 <main>
   <div class="features">
-    <div class="feature"><h3>Easy to Use</h3><p>Double-click and go — no complicated setup needed.</p></div>
-    <div class="feature"><h3>Powerful</h3><p>Full-featured firewall controls, all from a simple GUI.</p></div>
-    <div class="feature"><h3>Safe & Reliable</h3><p>Python + PowerShell integration ensures your rules work smoothly.</p></div>
+    <div class="feature">
+      <h3>Easy to Use</h3>
+      <p>Double-click and go — no complicated setup needed.</p>
+    </div>
+    <div class="feature">
+      <h3>Powerful</h3>
+      <p>Full-featured firewall controls, all from a simple GUI.</p>
+    </div>
+    <div class="feature">
+      <h3>Safe & Reliable</h3>
+      <p>Python + PowerShell integration ensures your rules work smoothly.</p>
+    </div>
   </div>
 
-<a class="download-button" href="https://drive.usercontent.google.com/download?id=1Uuy2uvhnYJxBb2XmUpkUej5sNz11_4Lm&export=download&authuser=0&confirm=t&uuid=d3de5890-cd7d-46f9-97f7-6857b0a10ce2&at=AN8xHooB_rD-SOeq7hyHrQll543M:1756520039015" target="_blank">Download Firewall Suite</a>
+  <!-- Updated Download Button -->
+  <a class="download-button" href="https://release-assets.githubusercontent.com/github-production-release-asset/1043019587/25e0e43a-9c45-4da5-8527-33888d0497f0?sp=r&sv=2018-11-09&sr=b&spr=https&se=2025-08-30T03%3A10%3A18Z&rscd=attachment%3B+filename%3DFirewall.Suite.zip&rsct=application%2Foctet-stream" target="_blank">Download Firewall Suite</a>
 
   <section class="other-projects">
     <h2>Check Out My Other Projects</h2>
@@ -109,20 +199,19 @@ footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; c
 
 <footer>&copy; 2025 Firewall Suite</footer>
 
-<script>
-function toggleDarkMode() { document.body.classList.toggle('dark'); }
+<button id="glitch-button" onclick="triggerGlitch()">See Glitch Again</button>
 
-// Trigger glitch on header and background
+<script>
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+}
+
 function triggerGlitch() {
   const header = document.getElementById('header');
   header.classList.add('glitch');
-  setTimeout(() => {
-    header.classList.remove('glitch');
-  }, 1000);
+  setTimeout(() => header.classList.remove('glitch'), 1000);
 }
-
-// Run glitch on page load
-window.addEventListener('load', triggerGlitch);
 </script>
+
 </body>
 </html>
