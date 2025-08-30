@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Firewall Suite (Beta Version)</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="icon" href="main.png" type="image/png"> <!-- Favicon -->
   <style>
     :root {
       --primary: #2563eb;
@@ -28,18 +29,30 @@
       color: var(--text-dark);
     }
 
-    /* Animations */
+    /* Glitch effect */
+    .glitch {
+      animation: glitchIntro 1s forwards;
+    }
+
+    @keyframes glitchIntro {
+      0% {background-color: var(--primary); color: white;}
+      25% {background-color: black; color: red;}
+      50% {background-color: red; color: black;}
+      75% {background-color: black; color: red;}
+      100% {background-color: var(--primary); color: white;}
+    }
+
     @keyframes fadeInUp {
       0% {opacity: 0; transform: translateY(20px);}
       100% {opacity: 1; transform: translateY(0);}
     }
 
     header {
-      background: linear-gradient(135deg, var(--primary), #1e40af);
-      color: white;
       padding: 80px 20px 60px 20px;
       text-align: center;
       position: relative;
+      background: var(--primary);
+      color: white;
     }
 
     header h1 {
@@ -86,6 +99,18 @@
 
     .dark-toggle:hover {
       background-color: #eee;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 60px;
+      height: auto;
     }
 
     main {
@@ -193,10 +218,13 @@
   </style>
 </head>
 <body>
-  <header>
+  <header id="header">
     <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     <div class="beta-tag">Beta Version</div>
-    <h1>Firewall Suite</h1>
+    <div class="header-title">
+      <img src="main.png" alt="Firewall Suite Logo" class="logo">
+      <h1>Firewall Suite</h1>
+    </div>
     <p>A clean, powerful GUI tool that combines Python and PowerShell to manage your Windows 11 firewall effortlessly.</p>
   </header>
 
@@ -233,9 +261,19 @@
   </footer>
 
   <script>
+    // Dark mode toggle
     function toggleDarkMode() {
       document.body.classList.toggle('dark');
     }
+
+    // Glitch intro effect on page load
+    window.addEventListener('load', () => {
+      const header = document.getElementById('header');
+      header.classList.add('glitch');
+      setTimeout(() => {
+        header.classList.remove('glitch');
+      }, 1000); // Duration matches glitchIntro animation
+    });
   </script>
 </body>
 </html>
