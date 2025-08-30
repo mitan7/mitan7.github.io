@@ -22,7 +22,6 @@ body {
   background-color: var(--bg-light);
   color: var(--text-light);
   transition: background-color 0.3s, color 0.3s;
-  overflow-x: hidden;
 }
 
 body.dark { background-color: var(--bg-dark); color: var(--text-dark); }
@@ -33,6 +32,11 @@ header {
   position: relative;
   background: linear-gradient(135deg, var(--primary), #1e40af);
   color: white;
+  transition: all 0.3s;
+}
+
+header h1, header p {
+  transition: all 0.3s;
 }
 
 .header-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
@@ -41,12 +45,10 @@ header {
 main { padding: 50px 20px; display: flex; flex-direction: column; align-items: center; }
 
 .features { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 40px; gap: 30px; }
-
-.feature { background-color: white; border-radius: 12px; padding: 25px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; }
-
+.feature { background-color: white; border-radius: 12px; padding: 25px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; transition: all 0.3s; }
 body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
 
-.download-button { margin-top: 50px; padding: 18px 40px; font-size: 18px; background-color: var(--secondary); color: white; text-decoration: none; border-radius: 10px; }
+.download-button { margin-top: 50px; padding: 18px 40px; font-size: 18px; background-color: var(--secondary); color: white; text-decoration: none; border-radius: 10px; transition: background-color 0.3s; }
 .download-button:hover { background-color: #059669; }
 
 .other-projects { margin-top: 80px; text-align: center; }
@@ -56,61 +58,27 @@ body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
 .other-projects a { color: var(--primary); text-decoration: none; }
 .other-projects a:hover { color: #1e40af; }
 
-footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; }
+footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; transition: all 0.3s; }
 
 .dark-toggle { position: absolute; top: 20px; left: 20px; background-color: white; color: #333; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
 .dark-toggle:hover { background-color: #eee; }
 
-/* Full screen glitch overlay */
-#glitch-overlay {
-  position: fixed;
-  top:0; left:0;
-  width:100%; height:100%;
-  background-color:black;
-  color:red;
-  z-index:9999;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:3em;
-  text-align:center;
-  opacity:0;
-  pointer-events:none;
+/* Glitch animation for header and background */
+@keyframes glitchAnim {
+  0% {background: linear-gradient(135deg, var(--primary), #1e40af); color: white;}
+  25% {background-color: black; color: red;}
+  50% {background-color: red; color: black;}
+  75% {background-color: black; color: red;}
+  100% {background: linear-gradient(135deg, var(--primary), #1e40af); color: white;}
 }
-
-#glitch-overlay.active {
+.glitch {
   animation: glitchAnim 1s forwards;
 }
-
-@keyframes glitchAnim {
-  0% {opacity:1; transform:translate(0,0);}
-  25% {background-color:black; color:red; transform:translate(-5px,3px) skewX(5deg);}
-  50% {background-color:red; color:black; transform:translate(5px,-3px) skewY(5deg);}
-  75% {background-color:black; color:red; transform:translate(-3px,2px) skewX(-5deg);}
-  100% {opacity:0; transform:translate(0,0);}
-}
-
-/* Glitch button */
-#glitch-button {
-  position: fixed;
-  bottom: 10px;
-  left: 10px;
-  background-color: #333;
-  color: white;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
-  z-index: 10000;
-  transition: background-color 0.3s;
-}
-#glitch-button:hover { background-color:#555; }
-
 </style>
 </head>
 <body>
 
-<header>
+<header id="header">
   <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
   <div class="beta-tag">Beta Version</div>
   <div class="header-title">
@@ -141,21 +109,20 @@ footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; c
 
 <footer>&copy; 2025 Firewall Suite</footer>
 
-<div id="glitch-overlay">FIREWALL SUITE</div>
-<button id="glitch-button" onclick="triggerGlitch()">See Glitch Again</button>
-
 <script>
 function toggleDarkMode() { document.body.classList.toggle('dark'); }
 
+// Trigger glitch on header and background
 function triggerGlitch() {
-  const overlay = document.getElementById('glitch-overlay');
-  overlay.classList.add('active');
-  setTimeout(()=>{ overlay.classList.remove('active'); }, 1000);
+  const header = document.getElementById('header');
+  header.classList.add('glitch');
+  setTimeout(() => {
+    header.classList.remove('glitch');
+  }, 1000);
 }
 
-// Trigger glitch briefly on page load
-window.addEventListener('load', () => { triggerGlitch(); });
+// Run glitch on page load
+window.addEventListener('load', triggerGlitch);
 </script>
-
 </body>
 </html>
