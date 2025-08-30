@@ -7,170 +7,89 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <link rel="icon" href="main.png" type="image/png">
 <style>
-  :root {
-    --primary: #2563eb;
-    --secondary: #10b981;
-    --bg-light: #f8f9fa;
-    --bg-dark: #121212;
-    --text-light: #222;
-    --text-dark: #f0f0f0;
-  }
+:root {
+  --primary: #2563eb;
+  --secondary: #10b981;
+  --bg-light: #f8f9fa;
+  --bg-dark: #121212;
+  --text-light: #222;
+  --text-dark: #f0f0f0;
+}
 
-  body {
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    background-color: var(--bg-light);
-    color: var(--text-light);
-    transition: background-color 0.3s, color 0.3s;
-    overflow-x: hidden;
-  }
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: all 0.3s;
+  overflow-x: hidden;
+}
 
-  body.dark {
-    background-color: var(--bg-dark);
-    color: var(--text-dark);
-  }
+body.dark { background-color: var(--bg-dark); color: var(--text-dark); }
 
-  /* Full screen glitch overlay */
-  #glitch-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--primary);
-    color: white;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2em;
-    animation: glitchFullScreen 1s forwards;
-  }
+header {
+  padding: 80px 20px 60px 20px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(135deg, var(--primary), #1e40af);
+  color: white;
+  transition: all 0.3s;
+}
 
-  @keyframes glitchFullScreen {
-    0% {background-color: var(--primary); color: white;}
-    25% {background-color: black; color: red;}
-    50% {background-color: red; color: black;}
-    75% {background-color: black; color: red;}
-    100% {opacity: 0; visibility: hidden;}
-  }
+.header-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
+.logo { width: 60px; height: auto; transition: all 0.3s; }
 
-  @keyframes fadeInUp {
-    0% {opacity: 0; transform: translateY(20px);}
-    100% {opacity: 1; transform: translateY(0);}
-  }
+header h1, header p, footer, .feature, .other-projects a, .download-button {
+  transition: all 0.3s;
+}
 
-  header {
-    padding: 80px 20px 60px 20px;
-    text-align: center;
-    position: relative;
-    background: linear-gradient(135deg, var(--primary), #1e40af);
-    color: white;
-  }
+/* Glitch effect class */
+.glitch-body { background-color: black !important; color: red !important; }
+.glitch-header { color: black !important; }
+.glitch-links a { filter: invert(1) !important; }
+.glitch-footer { content: "(C $*S(@!MS)" !important; color: red !important; }
 
-  header h1 {
-    font-size: 3em;
-    margin: 0;
-    animation: fadeInUp 1s ease forwards;
-  }
+header h1.glitch-text { transform: rotate(-2deg) skewX(5deg); }
+header p.glitch-text { transform: skewX(3deg); }
+.feature.glitch-card { transform: scale(1.05) rotate(-1deg); background-color: red !important; color: black !important; }
 
-  header p {
-    font-size: 1.2em;
-    margin-top: 15px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    animation: fadeInUp 1.2s ease forwards;
-  }
+.dark-toggle { position: absolute; top: 20px; left: 20px; background-color: white; color: #333; border: none; padding: 8px 12px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+.dark-toggle:hover { background-color: #eee; }
 
-  header .beta-tag {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #f59e0b;
-    color: white;
-    padding: 5px 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    font-size: 0.9em;
-    animation: fadeInUp 1.5s ease forwards;
-  }
+.features { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 40px; gap: 30px; }
+.feature { background-color: white; border-radius: 12px; padding: 25px; width: 250px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; opacity: 1; }
+body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
 
-  .dark-toggle {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: white;
-    color: #333;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: background-color 0.3s, color 0.3s;
-  }
+.download-button { margin-top: 50px; padding: 18px 40px; font-size: 18px; background-color: var(--secondary); color: white; text-decoration: none; border-radius: 10px; }
+.download-button:hover { background-color: #059669; }
 
-  .dark-toggle:hover { background-color: #eee; }
+.other-projects { margin-top: 80px; text-align: center; }
+.other-projects h2 { font-size: 2em; margin-bottom: 20px; }
+.other-projects ul { list-style: none; padding: 0; }
+.other-projects li { margin: 10px 0; font-size: 1.1em; }
+.other-projects a { color: var(--primary); text-decoration: none; }
+.other-projects a:hover { color: #1e40af; }
 
-  .header-title { display: flex; align-items: center; justify-content: center; gap: 15px; }
-  .logo { width: 60px; height: auto; }
+footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; }
 
-  main { padding: 50px 20px; display: flex; flex-direction: column; align-items: center; }
-
-  .features { display: flex; flex-wrap: wrap; justify-content: center; margin-top: 40px; gap: 30px; }
-
-  .feature {
-    background-color: white;
-    border-radius: 12px;
-    padding: 25px;
-    width: 250px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    text-align: center;
-    opacity: 0;
-    animation: fadeInUp 1s ease forwards;
-    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
-  }
-
-  body.dark .feature { background-color: #1e1e1e; color: #f0f0f0; }
-
-  .feature:nth-child(1) { animation-delay: 0.2s; }
-  .feature:nth-child(2) { animation-delay: 0.4s; }
-  .feature:nth-child(3) { animation-delay: 0.6s; }
-
-  .feature:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-
-  .download-button {
-    margin-top: 50px;
-    padding: 18px 40px;
-    font-size: 18px;
-    background-color: var(--secondary);
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-  }
-
-  .download-button:hover { background-color: #059669; }
-
-  .other-projects { margin-top: 80px; text-align: center; }
-
-  .other-projects h2 { font-size: 2em; margin-bottom: 20px; animation: fadeInUp 1s ease forwards; }
-
-  .other-projects ul { list-style: none; padding: 0; }
-
-  .other-projects li { margin: 10px 0; font-size: 1.1em; animation: fadeInUp 1s ease forwards; }
-
-  .other-projects a { color: var(--primary); text-decoration: none; transition: color 0.3s; }
-  .other-projects a:hover { color: #1e40af; }
-
-  footer { margin-top: 80px; padding: 20px; text-align: center; font-size: 14px; color: #777; background-color: #f1f1f1; transition: background-color 0.3s, color 0.3s; }
-  body.dark footer { background-color: #1e1e1e; color: #aaa; }
+#glitch-button {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 999;
+  transition: background-color 0.3s;
+}
+#glitch-button:hover { background-color: #555; }
 
 </style>
 </head>
 <body>
-
-<div id="glitch-overlay">Firewall Suite</div> <!-- Full screen glitch overlay -->
 
 <header>
   <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
@@ -201,19 +120,35 @@
   </section>
 </main>
 
-<footer>&copy; 2025 Firewall Suite</footer>
+<footer id="footer">&copy; 2025 Firewall Suite</footer>
+
+<button id="glitch-button" onclick="triggerGlitch()">See Glitch Again</button>
 
 <script>
-function toggleDarkMode() {
-  document.body.classList.toggle('dark');
+function toggleDarkMode() { document.body.classList.toggle('dark'); }
+
+function triggerGlitch() {
+  // Add glitch classes
+  document.body.classList.add('glitch-body');
+  document.querySelector('header').classList.add('glitch-header');
+  document.querySelectorAll('header h1, header p').forEach(el=>el.classList.add('glitch-text'));
+  document.querySelectorAll('.feature').forEach(el=>el.classList.add('glitch-card'));
+  document.querySelectorAll('.other-projects, .other-projects ul, .other-projects li, .other-projects a').forEach(el=>el.classList.add('glitch-links'));
+  document.querySelector('footer').classList.add('glitch-footer');
+
+  // Remove glitch after 1 second
+  setTimeout(() => {
+    document.body.classList.remove('glitch-body');
+    document.querySelector('header').classList.remove('glitch-header');
+    document.querySelectorAll('header h1, header p').forEach(el=>el.classList.remove('glitch-text'));
+    document.querySelectorAll('.feature').forEach(el=>el.classList.remove('glitch-card'));
+    document.querySelectorAll('.other-projects, .other-projects ul, .other-projects li, .other-projects a').forEach(el=>el.classList.remove('glitch-links'));
+    document.querySelector('footer').classList.remove('glitch-footer');
+  }, 1000);
 }
 
-// Remove glitch overlay after animation
-window.addEventListener('load', () => {
-  const overlay = document.getElementById('glitch-overlay');
-  setTimeout(() => { overlay.style.display = 'none'; }, 1000); // matches animation duration
-});
+// Run glitch on initial load briefly
+window.addEventListener('load', () => { triggerGlitch(); });
 </script>
-
 </body>
 </html>
